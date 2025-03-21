@@ -53,7 +53,7 @@ class NhanVienController
         include_once __DIR__ . '/../views/nhanvien/add.php';
     }
 
-// Lưu nhân viên mới
+    // Lưu nhân viên mới
     public function save()
     {
         $errorMessage = '';

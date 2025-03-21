@@ -12,8 +12,11 @@
             <td><?= htmlspecialchars($phongban->Ten_Phong) ?></td>
         </tr>
     </table>
-    <a href="/kiemtragiuaky/phongban/edit/<?= $phongban->Ma_Phong ?>" class="btn btn-warning"<?= $phongban->Ma_Phong ?>>Sửa</a>
-    <a href="/kiemtragiuaky/phongban/delete/<?= $phongban->Ma_Phong ?>" onclick="return confirm('Bạn có chắc muốn xóa?')" class="btn btn-danger">Xóa</a>
+    <?php if (isset($_SESSION['user']) && $_SESSION['user']->role_id === 1) : ?>
+        <a href="/kiemtragiuaky/phongban/edit/<?= $phongban->Ma_Phong ?>" class="btn btn-warning"<?= $phongban->Ma_Phong ?>>Sửa</a>
+        <a href="/kiemtragiuaky/phongban/delete/<?= $phongban->Ma_Phong ?>" onclick="return confirm('Bạn có chắc muốn xóa?')" class="btn btn-danger">Xóa</a>
+        
+    <?php endif; ?>
     <a href="/kiemtragiuaky/phongban/index" class="btn btn-secondary">Quay lại</a>
     
 </div>

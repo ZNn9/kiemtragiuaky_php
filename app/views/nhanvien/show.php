@@ -28,18 +28,19 @@
                             </span>
                         </p>
 
-                        <!-- Buttons -->
-                        <div class="mt-4 d-flex">
-                            <a href="/kiemtragiuaky/nhanvien/edit/<?php echo $nhanvien->Ma_NV; ?>" class="btn btn-warning mr-3">
-                                ✏️ Sửa
-                            </a>
-                            <a href="/kiemtragiuaky/nhanvien/delete/<?php echo $nhanvien->Ma_NV; ?>" 
-                               class="btn btn-danger"
-                               onclick="return confirm('Bạn có chắc chắn muốn xóa nhân viên này?');">
-                               🗑️ Xóa
-                            </a>
-                        </div>
-
+                        <?php if (isset($_SESSION['user']) && $_SESSION['user']->role_id === 1) : ?>
+                            <div class="mt-4 d-flex">
+                                <a href="/kiemtragiuaky/nhanvien/edit/<?php echo $nhanvien->Ma_NV; ?>" class="btn btn-warning mr-3">
+                                    ✏️ Sửa
+                                </a>
+                                <a href="/kiemtragiuaky/nhanvien/delete/<?php echo $nhanvien->Ma_NV; ?>" 
+                                class="btn btn-danger"
+                                onclick="return confirm('Bạn có chắc chắn muốn xóa nhân viên này?');">
+                                🗑️ Xóa
+                                </a>
+                            </div>
+                        <?php endif; ?>
+                    
                         <div class="mt-4">
                             <a class="btn btn-secondary" href="/kiemtragiuaky">← Quay lại danh sách nhân viên</a>
                         </div>

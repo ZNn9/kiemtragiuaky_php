@@ -18,6 +18,28 @@ class NhanVienModel
         $result = $stmt->fetchAll(PDO::FETCH_OBJ);
         return $result;
     }
+
+    public function getDanhSachNhanVienPhanTrang($limit, $offset)
+    {
+        $query = "SELECT nv.Ma_NV, nv.Ten_NV, nv.Phai, nv.Noi_Sinh, pb.Ten_Phong as PhongBan_Ten, nv.Luong
+                  FROM " . $this->tableName . " nv
+                  LEFT JOIN phongban pb ON nv.Ma_Phong = pb.Ma_Phong
+                  LIMIT :limit OFFSET :offset";
+    
+        $stmt = $this->conn->prepare($query);
+        $stmt->bindValue(':limit', (int)$limit, PDO::PARAM_INT);
+        $stmt->bindValue(':offset', (int)$offset, PDO::PARAM_INT);
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_OBJ);
+    }
+    
+    public function getTongSoNhanVien()
+    {
+        $query = "SELECT COUNT(*) as total FROM nhanvien";
+        $stmt = $this->conn->query($query);
+        $result = $stmt->fetch(PDO::FETCH_OBJ);
+        return $result->total;
+    }
     
     public function getNhanVienById($Ma_NV)
     {
@@ -106,22 +128,6 @@ class NhanVienModel
         return false;
     }
 
-    public function getDanhSachNhanVienPhanTrang($limit, $offset)
-    {
-        $query = "SELECT * FROM nhanvien LIMIT :limit OFFSET :offset";
-        $stmt = $this->conn->prepare($query);
-        $stmt->bindValue(':limit', (int)$limit, PDO::PARAM_INT);
-        $stmt->bindValue(':offset', (int)$offset, PDO::PARAM_INT);
-        $stmt->execute();
-        return $stmt->fetchAll(PDO::FETCH_OBJ);
-    }
 
-    public function getTongSoNhanVien()
-    {
-        $query = "SELECT COUNT(*) as total FROM nhanvien";
-        $stmt = $this->conn->query($query);
-        $result = $stmt->fetch(PDO::FETCH_OBJ);
-        return $result->total;
-    }
 
 }
