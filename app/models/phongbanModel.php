@@ -58,7 +58,7 @@ class PhongBanModel
     }
     public function updatePhongBan($Ma_Phong, $Ten_Phong)
     {
-        if (empty($Ma_Phong) || !is_numeric($Ma_Phong)) {
+        if (empty($Ma_Phong)) {
             return false;
         }
         
