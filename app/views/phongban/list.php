@@ -19,7 +19,6 @@
                             <?php echo htmlspecialchars($phongban->Ten_Phong, ENT_QUOTES, 'UTF-8'); ?>
                         </a>
                     </td>
-                    <td><?= htmlspecialchars($phongban->description) ?></td>
                     <td>
                         <a href="/kiemtragiuaky/phongban/edit/<?= $phongban->Ma_Phong ?>" class="btn btn-warning btn-sm">Sửa</a>
                         <a href="/kiemtragiuaky/phongban/delete/<?= $phongban->Ma_Phong ?>" onclick="return confirm('Bạn có chắc muốn xóa?')" class="btn btn-danger btn-sm">Xóa</a>
