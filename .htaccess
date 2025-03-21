@@ -1,0 +1,12 @@
+RewriteEngine On
+RewriteBase /kiemtragiuaky/
+
+# Bỏ qua file hoặc folder có thực
+RewriteCond %{REQUEST_FILENAME} -f [OR]
+RewriteCond %{REQUEST_FILENAME} -d
+RewriteRule ^ - [L]
+
+# Routing cho MVC
+RewriteRule ^([^/]+)$ index.php?controller=$1 [QSA,L]
+RewriteRule ^([^/]+)/([^/]+)$ index.php?controller=$1&action=$2 [QSA,L]
+RewriteRule ^([^/]+)/([^/]+)/([^/]+)$ index.php?controller=$1&action=$2&id=$3 [QSA,L]
